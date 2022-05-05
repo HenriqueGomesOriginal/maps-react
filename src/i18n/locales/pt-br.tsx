@@ -1,7 +1,9 @@
 export default {
     translations: {
         Home: {
-            Title: "Calculadora de Distâncias"
+            Results: "Resultados",
+            Closest: "Endereço mais perto",
+            Further: "Endereço mais longe"
         },
         Aside: {
             Title: "Calculadora de Distâncias",

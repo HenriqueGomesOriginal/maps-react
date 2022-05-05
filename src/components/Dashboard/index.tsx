@@ -1,29 +1,26 @@
-import React, { ReactNode } from 'react';
+import React, { ReactNode } from "react";
 
 // Styles
-import { 
-    Container,
-    Content
- } from './styles';
+import { Container, Content } from "./styles";
 
 // Components from DashBoard
 import Aside from "../Aside";
 import { Outlet } from "react-router-dom";
 
-interface IDashboard {
-    children?: ReactNode
-}
+// Context
+import { DashContextProvider } from "../../context/dashboard-context";
 
-const Dashboard: React.FC<IDashboard> = ({children}) => {
+const Dashboard: React.FC = () => {
   return (
     <Container>
-        <Aside/>
+      <DashContextProvider>
+        <Aside />
         <Content>
-            {children}
-            <Outlet/>
+          <Outlet />
         </Content>
+      </DashContextProvider>
     </Container>
   );
-}
+};
 
 export default Dashboard;

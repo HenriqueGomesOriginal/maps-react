@@ -4,30 +4,71 @@ import I18n, { Translator } from "../i18n";
 
 import { Container } from "./styles";
 
+// Formik
+import { Formik, Form, Field } from "formik";
+
+// Service
+import { postCalculateDistance } from "./service";
+
+import { useDashContext } from "../../context/dashboard-context";
+
 const Aside: React.FC = () => {
   const [countAddress, setCountAddress] = useState(2);
+  const placeholder = Translator("Aside.Placeholder");
 
-  const submitData = () => {
-
-  };
+  // Request value
+  const { setResultRequest } = useDashContext();
 
   return (
     <Container>
       <div className="content-div">
-        <h1>{Translator("Aside.Title")}</h1>
-        <h3>{Translator("Aside.Description")}</h3>
-        <p>{Translator("Aside.Address")}</p>
-          {[...Array(countAddress)].map((element, index) => (
-            <input key={index} placeholder="test" />
-          ))}
-          <button
-            onClick={() => {
-              setCountAddress(countAddress + 1);
-            }}
-          >
-            More
-          </button>
-          <button onClick={submitData}>Submit</button>
+        <h1 className="title-h1">{Translator("Aside.Title")}</h1>
+        <h3 className="description-h2">{Translator("Aside.Description")}</h3>
+        <p className="address-p">{Translator("Aside.Address")}</p>
+        <Formik
+          initialValues={{
+            addressArray: [],
+          }}
+          onSubmit={(value) => {
+            const sendData = async () => {
+              let ret = await postCalculateDistance(value);
+              setResultRequest(ret);
+            };
+
+            sendData();
+          }}
+        >
+          {({ errors, isSubmitting, touched }) => (
+            <Form>
+              {[...Array(countAddress)].map((element, index) => (
+                <Field
+                  name={`AddressArray.${index}.address`}
+                  className="address-input"
+                  key={index}
+                  placeholder={placeholder}
+                />
+              ))}
+              <button
+                className="more-button"
+                type="button"
+                onClick={() => {
+                  if (countAddress >= 10) {
+                    return;
+                  }
+                  setCountAddress(countAddress + 1);
+                }}
+              >
+                More
+              </button>
+              <button
+                type="submit"
+                className="submit-button"
+              >
+                Submit
+              </button>
+            </Form>
+          )}
+        </Formik>
       </div>
       <I18n />
     </Container>
