@@ -28,5 +28,7 @@ export const DashContextProvider: React.FC<Props> = ({children}) => {
 }
 
 export const useDashContext = () => {
-    return useContext(DashContext);
+    const context = useContext(DashContext);
+    const { resultRequest, setResultRequest } = context;
+    return { resultRequest, setResultRequest };
 }

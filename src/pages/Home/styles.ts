@@ -3,6 +3,21 @@ import styled from "styled-components";
 export const Container = styled.div`
   overflow: hidden;
   min-height: 100vh;
+  margin: ${(props) => props.theme.spacing.xxs};
+  color: ${(props) => props.theme.colors.deepSpace};
+
+
+  .content-div {
+    transition: 1s;
+
+    margin-top: ${(props) => props.theme.spacing.sm};
+
+    h2 {
+      font-size: ${(props) => props.theme.fontSize.xs};
+
+      margin-top: ${(props) => props.theme.spacing.xxxs};
+    }
+  }
 
   .background-img {
     position: absolute;

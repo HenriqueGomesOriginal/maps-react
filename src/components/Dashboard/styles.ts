@@ -10,5 +10,6 @@ export const Container = styled.div`
 `;
 
 export const Content = styled.div`
-  grid-area: "content";
+  float: right;
+  width: 73%;
 `;

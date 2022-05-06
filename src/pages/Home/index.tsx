@@ -17,8 +17,8 @@ const Home: React.FC = () => {
   const { resultRequest } = useDashContext();
 
   useEffect(() => {
-    //alert("Home: " + JSON.stringify(resultRequest));
-  }, []);
+    alert("Home: " + JSON.stringify(resultRequest));
+  }, [resultRequest]);
 
   // Translate
   var resultsStr = Translator("Home.Results");
@@ -27,13 +27,22 @@ const Home: React.FC = () => {
 
   return (
     <Container>
+      {resultRequest.length > 0 && <h1>{resultsStr}</h1>}
       {resultRequest.map((element, index) => (
-        <div>
-          <h1>{resultsStr}</h1>
-          <div>
-            <h2>{closestStr}</h2>
-            <h2>{furtherStr}</h2>
-          </div>
+        <div className="content-div" key={index}>
+          {element.addressArray.map((address, indexAddress) => (
+            <h2 key={indexAddress}>
+              {address.address}
+            </h2>
+          ))}
+          {element.closest && (
+            <h2>
+              teste
+            </h2>
+          )}
+          <h2>
+            Distancia: {JSON.stringify(element.distance).substring(0, 5)} Km
+          </h2>
         </div>
       ))}
     </Container>
