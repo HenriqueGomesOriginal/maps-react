@@ -25,6 +25,7 @@ const Aside: React.FC = () => {
         <h1 className="title-h1">{Translator("Aside.Title")}</h1>
         <h3 className="description-h2">{Translator("Aside.Description")}</h3>
         <p className="address-p">{Translator("Aside.Address")}</p>
+        <p>sdsd</p>
         <Formik
           initialValues={{
             addressArray: [],
@@ -44,6 +45,7 @@ const Aside: React.FC = () => {
                 <Field
                   name={`AddressArray.${index}.address`}
                   className="address-input"
+                  data-testid="input-aside"
                   key={index}
                   placeholder={placeholder}
                 />
@@ -51,6 +53,7 @@ const Aside: React.FC = () => {
               <button
                 className="more-button"
                 type="button"
+                data-testid="button-aside"
                 onClick={() => {
                   if (countAddress >= 10) {
                     return;
@@ -62,6 +65,7 @@ const Aside: React.FC = () => {
               </button>
               <button
                 type="submit"
+                data-testid="submit-aside"
                 className="submit-button"
               >
                 Submit

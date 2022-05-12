@@ -16,10 +16,6 @@ import { useDashContext } from "../../context/dashboard-context";
 const Home: React.FC = () => {
   const { resultRequest } = useDashContext();
 
-  useEffect(() => {
-    alert("Home: " + JSON.stringify(resultRequest));
-  }, [resultRequest]);
-
   // Translate
   var resultsStr = Translator("Home.Results");
   var closestStr = Translator("Home.Closest");
