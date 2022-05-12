@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import React, { useEffect } from "react";
 
 // Styles
 import { Container, Content } from "./styles";
