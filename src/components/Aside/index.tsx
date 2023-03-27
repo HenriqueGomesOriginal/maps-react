@@ -25,7 +25,6 @@ const Aside: React.FC = () => {
         <h1 className="title-h1">{Translator("Aside.Title")}</h1>
         <h3 className="description-h2">{Translator("Aside.Description")}</h3>
         <p className="address-p">{Translator("Aside.Address")}</p>
-        <p>sdsd</p>
         <Formik
           initialValues={{
             addressArray: [],
